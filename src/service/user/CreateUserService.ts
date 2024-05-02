@@ -1,3 +1,4 @@
+import { sign } from "jsonwebtoken";
 import prismaClient from "../../prisma";
 import { hash } from "bcryptjs";
 
@@ -37,7 +38,25 @@ class CreateUserService {
             email: true,
          },
       });
-      return user;
+
+      // Se deu tudo certo, gerar o token do usuário
+      const token = sign(
+         {
+            name: user.name,
+            email: user.email,
+         },
+         process.env.JWT_SECRET as string,
+         {
+            subject: user.id,
+            expiresIn: "15d",
+         }
+      );
+      return {
+         id: user.id,
+         name: user.name,
+         email: user.email,
+         token,
+      };
    }
 }
 
