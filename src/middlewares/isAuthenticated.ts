@@ -29,6 +29,6 @@ export function isAuthenticated(
 
       return next();
    } catch (err) {
-      return res.status(401).json({ message: "Não autorizado!" }).end();
+      return res.status(401).json({ message: "Token invalid" }).end();
    }
 }
