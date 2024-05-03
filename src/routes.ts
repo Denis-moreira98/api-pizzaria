@@ -18,6 +18,7 @@ import uploadConfig from "./config/multer";
 import { CreateProductController } from "./controllers/product/CreateProductController";
 import { ListByProductController } from "./controllers/product/ListByProductController";
 import { RemoveProductController } from "./controllers/product/RemoveProductController";
+import { EditProductController } from "./controllers/product/EditProductController";
 
 import { CreateOrderController } from "./controllers/order/CreateOrderController";
 import { RemoveOrderController } from "./controllers/order/RemoveOrderController";
@@ -65,6 +66,12 @@ router.delete(
    "/product",
    isAuthenticated,
    new RemoveProductController().handle
+);
+router.patch(
+   "/product/edit",
+   isAuthenticated,
+   upload.single("file"),
+   new EditProductController().handle
 );
 
 // -- ROTAS ORDER --
