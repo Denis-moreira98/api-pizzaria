@@ -10,12 +10,14 @@ import { isAuthenticated } from "./middlewares/isAuthenticated";
 
 import { CreateCategoryController } from "./controllers/category/CreateCategoryController";
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
+import { RemoveCategoryController } from "./controllers/category/RemoveCategoryController";
 
 //Multer
 import uploadConfig from "./config/multer";
 
 import { CreateProductController } from "./controllers/product/CreateProductController";
 import { ListByProductController } from "./controllers/product/ListByProductController";
+import { RemoveProductController } from "./controllers/product/RemoveProductController";
 
 import { CreateOrderController } from "./controllers/order/CreateOrderController";
 import { RemoveOrderController } from "./controllers/order/RemoveOrderController";
@@ -41,6 +43,11 @@ router.post(
    new CreateCategoryController().handle
 );
 router.get("/category", isAuthenticated, new ListCategoryController().handle);
+router.delete(
+   "/category",
+   isAuthenticated,
+   new RemoveCategoryController().handle
+);
 
 // -- ROTAS PRODUCT --
 router.post(
@@ -53,6 +60,11 @@ router.get(
    "/category/product",
    isAuthenticated,
    new ListByProductController().handle
+);
+router.delete(
+   "/product",
+   isAuthenticated,
+   new RemoveProductController().handle
 );
 
 // -- ROTAS ORDER --
