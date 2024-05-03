@@ -12,7 +12,7 @@ class RemoveItemController {
 
       return res
          .status(200)
-         .json({ message: "order deleted successfully", order });
+         .json({ message: "Item deleted successfully", order });
    }
 }
 
