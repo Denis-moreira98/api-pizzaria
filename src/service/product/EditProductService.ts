@@ -2,10 +2,10 @@ import prismaClient from "../../prisma";
 
 interface ProductRequest {
    product_id: string;
-   name: string;
-   price: string;
-   description: string;
-   banner: string;
+   name?: string;
+   price?: string;
+   description?: string;
+   banner?: string;
 }
 
 class EditProductService {
