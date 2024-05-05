@@ -7,6 +7,9 @@ class ListCategoryService {
             id: true,
             name: true,
          },
+         orderBy: {
+            created_at: "desc",
+         },
       });
 
       return category;
