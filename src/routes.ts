@@ -28,6 +28,7 @@ import { SendOrderController } from "./controllers/order/SendOrderController";
 import { ListOrdersController } from "./controllers/order/ListOrdersController";
 import { DetailOrderController } from "./controllers/order/DetailOrderController";
 import { FinishOrderController } from "./controllers/order/FinishOrderController";
+import { ListProductControler } from "./controllers/product/ListProductController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -73,6 +74,7 @@ router.patch(
    upload.single("file"),
    new EditProductController().handle
 );
+router.get("/products", isAuthenticated, new ListProductControler().handle);
 
 // -- ROTAS ORDER --
 router.post("/order", isAuthenticated, new CreateOrderController().handle);
