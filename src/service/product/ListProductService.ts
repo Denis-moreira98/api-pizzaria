@@ -9,6 +9,7 @@ class ListProductService {
             price: true,
             description: true,
             banner: true,
+            category_id: true,
          },
          orderBy: {
             created_at: "desc",
