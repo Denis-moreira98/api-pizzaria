@@ -88,7 +88,7 @@ router.delete(
 router.put("/order/send", isAuthenticated, new SendOrderController().handle);
 router.get("/orders", isAuthenticated, new ListOrdersController().handle);
 router.get(
-   "/orders/detail",
+   "/order/detail",
    isAuthenticated,
    new DetailOrderController().handle
 );
