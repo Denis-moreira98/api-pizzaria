@@ -6,6 +6,7 @@ interface ProductRequest {
    price?: string;
    description?: string;
    banner?: string;
+   category_id?: string;
 }
 
 class EditProductService {
@@ -15,6 +16,7 @@ class EditProductService {
       price,
       description,
       banner,
+      category_id,
    }: ProductRequest) {
       // Verificar se o produto existe
       const existingProduct = await prismaClient.product.findUnique({
@@ -37,6 +39,7 @@ class EditProductService {
             price: price || existingProduct.price,
             description: description || existingProduct.description,
             banner: banner || existingProduct.banner,
+            category_id: category_id || existingProduct.category_id,
          },
       });
 
