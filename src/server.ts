@@ -25,4 +25,8 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
    });
 });
 
-app.listen(8080, () => console.log("Serve Online!"));
+const port = process.env.PORT || 8080;
+
+app.listen(port, () =>
+   console.log(`Serve Online in port ${port}`)
+);
