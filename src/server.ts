@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response } from "express";
 import "express-async-errors";
 import cors from "cors";
 import path from "path";
@@ -13,7 +13,7 @@ app.use(router);
 
 app.use("/files", express.static(path.resolve(__dirname, "..", "tmp")));
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response) => {
    if (err instanceof Error) {
       return res.status(400).json({
          error: err.message,
@@ -27,6 +27,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 const port = process.env.PORT || 8080;
 
-app.listen(port, () =>
-   console.log(`Serve Online in port ${port}`)
-);
+app.listen(port, () => console.log(`Serve Online in port ${port}`));
