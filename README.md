@@ -1,3 +1,9 @@
+<div align="center">
+  
+![logo](https://github.com/Denis-moreira98/api-pizzaria/assets/72985107/68e4a1f0-c155-405a-b68a-f1e6a5636e4b)
+
+</div>
+
 # API Pizzaria 🍕
 
 ## Sobre o projeto
@@ -49,17 +55,17 @@ Após a instalação, crie um banco de dados no pgAdmin e lembre-se do nome do b
     ```bash
     git clone https://github.com/Denis-moreira98/api-pizzaria
     ```
-3. Acesse a pasta raiz do projeto:
+2. Acesse a pasta raiz do projeto:
    
     ```bash
     cd api-pizzaria
     ```
-4. Instale as dependências:
+3. Instale as dependências:
    
     ```bash
     yarn install
     ```
-5. Configure as variáveis de ambiente. Consulte o arquivo `.env.example` para referência.
+4. Configure as variáveis de ambiente. Consulte o arquivo `.env.example` para referência.
 
 <div align="center">
   
@@ -67,15 +73,15 @@ Após a instalação, crie um banco de dados no pgAdmin e lembre-se do nome do b
 
 </div>
 
-6. Execute as migrações no banco de dados:
+5. Execute as migrações no banco de dados:
    
     ```bash
     yarn prisma migrate dev
     ```
-8. Inicie o servidor:
+6. Inicie o servidor:
    
     ```bash
-    yarn dev
+    yarn run dev
     ```
 
 ## Documentação da API
