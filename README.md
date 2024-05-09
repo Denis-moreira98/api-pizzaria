@@ -36,10 +36,10 @@ A API Pizzaira é uma aplicação desenvolvida para o gerenciamento de pedidos, 
 
 Para executar o projeto localmente, são necessários os seguintes requisitos:
 
-- Node.js (versão 18 ou superior)
-- PostgreSQL v11 (com pgAdmin)
-- Yarn
-
+- [Nodejs](https://nodejs.org/en/download/current) (versão 18 ou superior)
+- [PostgreSQL](https://www.postgresql.org/download/) v11 (com pgAdmin)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
+  
 Após a instalação, crie um banco de dados no pgAdmin e lembre-se do nome do banco e da senha.
 
 ## Configuração do Ambiente
