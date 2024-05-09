@@ -1,4 +1,6 @@
 import express, { Request, Response } from "express";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger.json";
 import "express-async-errors";
 import cors from "cors";
 import path from "path";
@@ -10,6 +12,12 @@ app.use(express.json());
 app.use(cors());
 
 app.use(router);
+
+app.get("/swagger.json", (req, res) => {
+   res.sendFile(__dirname + "/swagger.json");
+});
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/files", express.static(path.resolve(__dirname, "..", "tmp")));
 

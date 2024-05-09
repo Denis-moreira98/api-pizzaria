@@ -1,0 +1,1769 @@
+{
+   "swagger": "2.0",
+   "info": {
+      "title": "API PIZZARIA",
+      "version": "1.0.0",
+      "description": "Documentação da Api da pizzaria",
+      "contact": {
+         "name": "Denis Moreira",
+         "email": "denis.moreira98@outlook.com"
+      }
+   },
+
+   "paths": {
+      "/users": {
+         "post": {
+            "summary": "Cadastro de um novo usário",
+            "tags": ["Rotas User"],
+            "description": "Cria um novo usuário",
+            "parameters": [
+               {
+                  "name": "name, email, password",
+                  "in": "body",
+                  "description": "Dados do usuário como nome, email e senha",
+                  "required": true,
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "name": {
+                           "type": "string",
+                           "example": "Leo Messi"
+                        },
+                        "email": {
+                           "type": "string",
+                           "example": "messi@teste.com"
+                        },
+                        "password": {
+                           "type": "string",
+                           "example": "messi@teste.com"
+                        }
+                     }
+                  }
+               }
+            ],
+            "responses": {
+               "201": {
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "13cc9f8a-610c-40d3-a616-88b12077aa9e"
+                        },
+                        "name": {
+                           "type": "string",
+                           "example": "Leo Messi"
+                        },
+                        "email": {
+                           "type": "string",
+                           "example": "messi@teste.com"
+                        },
+                        "token": {
+                           "type": "string",
+                           "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVvIE1lc3NpIiwiZW1haWwiOiJtZXNzaUB0ZXN0ZS5jb20iLCJpYXQiOjE3MTQ3NTU5NTIsImV4cCI6MTcxNjA1MTk1Miwic3ViIjoiMTNjYzlmOGEtNjEwYy00MGQzLWE2MTYtODhiMTIwNzdhYTllIn0.QTOl2h0QATB6IF5gRLMHy7iHoE6UdyLHcfN_iZ3IFRE"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+
+      "/session": {
+         "post": {
+            "summary": "Login de usuário",
+            "tags": ["Rotas User"],
+            "description": "Autentica um usuário",
+            "parameters": [
+               {
+                  "name": "email, password",
+                  "in": "body",
+                  "description": "Dados do usuário como email e senha",
+                  "required": true,
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "email": {
+                           "type": "string",
+                           "example": "messi@teste.com"
+                        },
+                        "password": {
+                           "type": "string",
+                           "example": "messi@teste.com"
+                        }
+                     }
+                  }
+               }
+            ],
+            "responses": {
+               "201": {
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "13cc9f8a-610c-40d3-a616-88b12077aa9e"
+                        },
+                        "name": {
+                           "type": "string",
+                           "example": "Leo Messi"
+                        },
+                        "email": {
+                           "type": "string",
+                           "example": "messi@teste.com"
+                        },
+                        "token": {
+                           "type": "string",
+                           "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVvIE1lc3NpIiwiZW1haWwiOiJtZXNzaUB0ZXN0ZS5jb20iLCJpYXQiOjE3MTQ3NTU5NTIsImV4cCI6MTcxNjA1MTk1Miwic3ViIjoiMTNjYzlmOGEtNjEwYy00MGQzLWE2MTYtODhiMTIwNzdhYTllIn0.QTOl2h0QATB6IF5gRLMHy7iHoE6UdyLHcfN_iZ3IFRE"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/me": {
+         "get": {
+            "summary": "Obtém detalhes do usuário autenticado",
+            "tags": ["Rotas User"],
+            "description": "Obtém detalhes do usuário autenticado",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "headers",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "13cc9f8a-610c-40d3-a616-88b12077aa9e"
+                        },
+                        "name": {
+                           "type": "string",
+                           "example": "Leo Messi"
+                        },
+                        "email": {
+                           "type": "string",
+                           "example": "messi@teste.com"
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+
+      "/category": {
+         "post": {
+            "tags": ["Rotas Category"],
+            "summary": "Cria uma nova categoria",
+            "description": "Permite criar uma nova categoria",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "headers",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "name",
+                  "in": "body",
+                  "description": "Nome da categoria",
+                  "required": true,
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "name": {
+                           "type": "string",
+                           "example": "Pizzas"
+                        }
+                     }
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "b3270f6b-18a0-42b8-b594-f273e8e8d303"
+                        },
+                        "name": {
+                           "type": "string",
+                           "example": "Pizzas"
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/categories": {
+         "get": {
+            "tags": ["Rotas Category"],
+            "summary": "Listar todas categorias",
+            "description": "Listar todas categorias e os produtos que possuem",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "headers",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "schema": {
+                     "type": "array",
+                     "items": {
+                        "type": "object",
+                        "properties": {
+                           "id": {
+                              "type": "string",
+                              "example": "b3270f6b-18a0-42b8-b594-f273e8e8d303"
+                           },
+                           "name": {
+                              "type": "string",
+                              "example": "Pizzas"
+                           },
+                           "products": {
+                              "type": "array",
+                              "items": {
+                                 "type": "object",
+                                 "properties": {
+                                    "id": {
+                                       "type": "string",
+                                       "example": "b3270f6b-18a0-42b8-b594-f273e8e8d303"
+                                    },
+                                    "name": {
+                                       "type": "string",
+                                       "example": "Pizza de frango"
+                                    },
+                                    "price": {
+                                       "type": "string",
+                                       "example": "35,00"
+                                    },
+                                    "description": {
+                                       "type": "string",
+                                       "example": "Pizza saborosa de frango"
+                                    },
+                                    "banner": {
+                                       "type": "string",
+                                       "example": "{afe9d26664cda2c080c10cfda0d6db1c-Batata-frita-500x357.jpeg"
+                                    },
+                                    "created_at": {
+                                       "type": "string",
+                                       "example": "2024-05-06T17:45:58.120Z"
+                                    },
+                                    "updated_at": {
+                                       "type": "string",
+                                       "example": "2024-05-06T17:45:58.120Z"
+                                    },
+                                    "category_id": {
+                                       "type": "string",
+                                       "example": "daa56655-658c-4712-a90b-d8f15f1b42d7"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/category/remove": {
+         "delete": {
+            "tags": ["Rotas Category"],
+            "summary": "Remove uma categoria",
+            "description": "Permite remover uma categoria pelo ID",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "headers",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "category_id",
+                  "in": "query",
+                  "description": "ID da categoria a ser removida",
+                  "required": true,
+                  "type": "string"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Categoria removida com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Category successfully removed"
+                        },
+                        "category": {
+                           "type": "object",
+                           "properties": {
+                              "id": {
+                                 "type": "string",
+                                 "example": "a42d7067-8211-4d44-b3c6-b5de3fda5ceb"
+                              },
+                              "name": {
+                                 "type": "string",
+                                 "example": "Pizzas"
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "400": {
+                  "description": "Categoria não é possível deletar uma categoria que tem produtos associados",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "This category cannot be deleted because there are products associated with it"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/product/create": {
+         "post": {
+            "tags": ["Rotas Product"],
+            "summary": "Cria um novo produto",
+            "description": "Permite criar um novo produto com envio de arquivo",
+            "consumes": ["multipart/form-data"],
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "headers",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "name",
+                  "in": "formData",
+                  "description": "Nome do produto",
+                  "required": true,
+                  "type": "string"
+               },
+               {
+                  "name": "price",
+                  "in": "formData",
+                  "description": "Preço do produto",
+                  "required": true,
+                  "type": "string"
+               },
+               {
+                  "name": "description",
+                  "in": "formData",
+                  "description": "Descrição do produto",
+                  "required": true,
+                  "type": "string"
+               },
+               {
+                  "name": "file",
+                  "in": "formData",
+                  "description": "Arquivo de imagem do produto",
+                  "required": true,
+                  "type": "file"
+               },
+               {
+                  "name": "category_id",
+                  "in": "formData",
+                  "description": "ID da categoria do produto",
+                  "required": true,
+                  "type": "string"
+               }
+            ],
+            "responses": {
+               "201": {
+                  "description": "Produto criado com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "731b591f-d492-44dd-b456-f4588409e773"
+                        },
+                        "name": {
+                           "type": "string",
+                           "example": "Pizza de frango"
+                        },
+                        "price": {
+                           "type": "string",
+                           "example": "35,00"
+                        },
+                        "description": {
+                           "type": "string",
+                           "example": "Pizza saborosa com 8 fatias"
+                        },
+                        "banner": {
+                           "type": "string",
+                           "example": "{2f30aa733bbb6d949dace5e1c7491329-prisma-720x412.png"
+                        },
+                        "created_at": {
+                           "type": "string",
+                           "example": "2024-05-06T19:00:09.943Z"
+                        },
+                        "updated_at": {
+                           "type": "string",
+                           "example": "2024-05-06T19:00:09.943Z"
+                        },
+                        "category_id": {
+                           "type": "string",
+                           "example": "daa56655-658c-4712-a90b-d8f15f1b42d7"
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/category/product": {
+         "get": {
+            "tags": ["Rotas Product"],
+            "summary": "Listar produtos por categoria",
+            "description": "Lista todos os produtos pertencentes a uma categoria específica.",
+            "parameters": [
+               {
+                  "name": "category_id",
+                  "in": "query",
+                  "description": "ID da categoria",
+                  "required": true,
+                  "type": "string"
+               },
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Produtos encontrados",
+                  "schema": {
+                     "type": "array",
+                     "items": {
+                        "type": "object",
+                        "properties": {
+                           "id": {
+                              "type": "string",
+                              "example": "2535b841-b727-4b2b-82e0-a79afe2e5995"
+                           },
+                           "name": {
+                              "type": "string",
+                              "example": "Pepsi lata 350ml"
+                           },
+                           "price": {
+                              "type": "string",
+                              "example": "4,00"
+                           },
+                           "description": {
+                              "type": "string",
+                              "example": "Refrigerante em lata com 350ml"
+                           },
+                           "banner": {
+                              "type": "string",
+                              "example": "{99937f10b3c0dfb43bc6af79095f7afe-1939-refrigerante-pepsi-lata-350-ml.jpg"
+                           },
+                           "created_at": {
+                              "type": "string",
+                              "example": "2024-05-06T18:02:52.947Z"
+                           },
+                           "updated_at": {
+                              "type": "string",
+                              "example": "2024-05-06T18:02:52.947Z"
+                           },
+                           "category_id": {
+                              "type": "string",
+                              "example": "c0ae9bca-e6fb-414c-a7b6-b72aaef2a302"
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/product/edit": {
+         "patch": {
+            "tags": ["Rotas Product"],
+            "summary": "Editar produto",
+            "description": "Edita as informações de um produto existente.",
+            "parameters": [
+               {
+                  "name": "product_id",
+                  "in": "query",
+                  "description": "ID do produto",
+                  "required": true,
+                  "type": "string"
+               },
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "name",
+                  "in": "formData",
+                  "description": "Nome do produto",
+                  "required": false,
+                  "type": "string"
+               },
+               {
+                  "name": "price",
+                  "in": "formData",
+                  "description": "Preço do produto",
+                  "required": false,
+                  "type": "string"
+               },
+               {
+                  "name": "description",
+                  "in": "formData",
+                  "description": "Descrição do produto",
+                  "required": false,
+                  "type": "string"
+               },
+               {
+                  "name": "file",
+                  "in": "formData",
+                  "description": "Arquivo de imagem do produto",
+                  "required": false,
+                  "type": "file"
+               },
+               {
+                  "name": "category_id",
+                  "in": "formData",
+                  "description": "ID da categoria do produto",
+                  "required": false,
+                  "type": "string"
+               }
+            ],
+            "responses": {
+               "201": {
+                  "description": "Produto editado com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "731b591f-d492-44dd-b456-f4588409e773"
+                        },
+                        "name": {
+                           "type": "string",
+                           "example": "deleta aqui"
+                        },
+                        "price": {
+                           "type": "string",
+                           "example": "35,00"
+                        },
+                        "description": {
+                           "type": "string",
+                           "example": "Pizza saborosa com 8 fatias"
+                        },
+                        "banner": {
+                           "type": "string",
+                           "example": "{2f30aa733bbb6d949dace5e1c7491329-prisma-720x412.png"
+                        },
+                        "created_at": {
+                           "type": "string",
+                           "example": "2024-05-06T19:00:09.943Z"
+                        },
+                        "updated_at": {
+                           "type": "string",
+                           "example": "2024-05-06T19:00:09.943Z"
+                        },
+                        "category_id": {
+                           "type": "string",
+                           "example": "daa56655-658c-4712-a90b-d8f15f1b42d7"
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/product/delete": {
+         "delete": {
+            "tags": ["Rotas Product"],
+            "summary": "Deletar produto",
+            "description": "Remove um produto existente.",
+            "parameters": [
+               {
+                  "name": "product_id",
+                  "in": "query",
+                  "description": "ID do produto a ser deletado",
+                  "required": true,
+                  "type": "string"
+               },
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Produto excluído com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Product deleted successfully"
+                        },
+                        "product": {
+                           "type": "object",
+                           "example": {}
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/products": {
+         "get": {
+            "tags": ["Rotas Product"],
+            "summary": "Listar todos os produtos",
+            "description": "Retorna todos os produtos cadastrados no sistema.",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Produtos encontrados com sucesso",
+                  "schema": {
+                     "type": "array",
+                     "items": {
+                        "type": "object",
+                        "properties": {
+                           "id": {
+                              "type": "string",
+                              "example": "cb746339-7336-40fe-86d8-f31c88d28215"
+                           },
+                           "name": {
+                              "type": "string",
+                              "example": "Batata Frita 500g"
+                           },
+                           "price": {
+                              "type": "string",
+                              "example": "13,00"
+                           },
+                           "description": {
+                              "type": "string",
+                              "example": "Porção de batata frita com 500g"
+                           },
+                           "banner": {
+                              "type": "string",
+                              "example": "{95e90cdb944fd294d44bd1e730541ca3-Batata-frita-500x357.jpeg"
+                           },
+                           "category_id": {
+                              "type": "string",
+                              "example": "58fde2bb-2323-45af-a80c-4e966bb4eb07"
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/order/create": {
+         "post": {
+            "tags": ["Rotas Order"],
+            "summary": "Criar um novo pedido",
+            "description": "Cria um novo pedido no sistema, opcionalmente associado a um nome e número de mesa.",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "name",
+                  "in": "formData",
+                  "description": "Nome associado ao pedido (opcional)",
+                  "required": false,
+                  "type": "string"
+               },
+               {
+                  "name": "table",
+                  "in": "formData",
+                  "description": "Número da mesa",
+                  "required": true,
+                  "type": "integer"
+               }
+            ],
+            "responses": {
+               "201": {
+                  "description": "Pedido criado com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "fd70f891-fa2a-43a9-93d4-7267f40d7616"
+                        },
+                        "table": {
+                           "type": "integer",
+                           "example": 40
+                        },
+                        "status": {
+                           "type": "boolean",
+                           "example": false
+                        },
+                        "draft": {
+                           "type": "boolean",
+                           "example": true
+                        },
+                        "name": {
+                           "type": "string",
+                           "example": "Luna"
+                        },
+                        "created_at": {
+                           "type": "string",
+                           "example": "2024-05-02T21:06:38.718Z"
+                        },
+                        "updated_at": {
+                           "type": "string",
+                           "example": "2024-05-02T21:06:38.718Z"
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/order/delete": {
+         "delete": {
+            "tags": ["Rotas Order"],
+            "summary": "Remover um pedido",
+            "description": "Remove um pedido do sistema com base no ID do pedido fornecido.",
+            "parameters": [
+               {
+                  "name": "order_id",
+                  "in": "query",
+                  "description": "ID do pedido a ser removido",
+                  "required": true,
+                  "type": "string"
+               },
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Pedido removido com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Order deleted successfully"
+                        },
+                        "order": {
+                           "type": "object",
+                           "properties": {
+                              "id": {
+                                 "type": "string",
+                                 "example": "2d33afbf-d4c7-4c1a-993f-ef654156a1bc"
+                              },
+                              "table": {
+                                 "type": "integer",
+                                 "example": 10
+                              },
+                              "status": {
+                                 "type": "boolean",
+                                 "example": false
+                              },
+                              "draft": {
+                                 "type": "boolean",
+                                 "example": true
+                              },
+                              "name": {
+                                 "type": "string",
+                                 "example": "Messi"
+                              },
+                              "created_at": {
+                                 "type": "string",
+                                 "example": "2024-05-02T19:45:54.821Z"
+                              },
+                              "updated_at": {
+                                 "type": "string",
+                                 "example": "2024-05-02T19:45:54.821Z"
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/order/add": {
+         "post": {
+            "tags": ["Rotas Order"],
+            "summary": "Adicionar um item ao pedido",
+            "description": "Adiciona um item ao pedido especificado.",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "order_id, product_id, amount",
+                  "in": "body",
+                  "description": "Necessário passar order_id, product_id e amount",
+                  "required": true,
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "order_id": {
+                           "type": "string",
+                           "example": "3b0fb780-cb7c-4586-b248-0dead22a927b"
+                        },
+                        "product_id": {
+                           "type": "string",
+                           "example": "f886872d-79a0-417d-9328-9e8337346584"
+                        },
+                        "amount": {
+                           "type": "integer",
+                           "example": 3
+                        }
+                     }
+                  }
+               }
+            ],
+
+            "responses": {
+               "201": {
+                  "description": "Item adicionado ao pedido com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "3b0fb780-cb7c-4586-b248-0dead22a927b"
+                        },
+                        "amount": {
+                           "type": "number",
+                           "example": 3
+                        },
+                        "created_at": {
+                           "type": "string",
+                           "example": "2024-05-04T18:27:45.658Z"
+                        },
+                        "updated_at": {
+                           "type": "string",
+                           "example": "2024-05-04T18:27:45.658Z"
+                        },
+                        "order_id": {
+                           "type": "string",
+                           "example": "fd70f891-fa2a-43a9-93d4-7267f40d7616"
+                        },
+                        "product_id": {
+                           "type": "string",
+                           "example": "f886872d-79a0-417d-9328-9e8337346584"
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/order/remove/item": {
+         "delete": {
+            "tags": ["Rotas Order"],
+            "summary": "Remover um item do pedido",
+            "description": "Remove um item específico do pedido.",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "item_id",
+                  "in": "query",
+                  "description": "ID do item a ser removido",
+                  "required": true,
+                  "type": "string"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Item removido com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Item deleted successfully"
+                        },
+                        "order": {
+                           "type": "object",
+                           "properties": {
+                              "id": {
+                                 "type": "string",
+                                 "example": "c6381006-970f-4752-ba7d-12c904e7fdf3"
+                              },
+                              "amount": {
+                                 "type": "integer",
+                                 "example": 10
+                              },
+                              "created_at": {
+                                 "type": "string",
+                                 "example": "2024-05-08T22:49:34.058Z"
+                              },
+                              "updated_at": {
+                                 "type": "string",
+                                 "example": "2024-05-08T22:49:34.058Z"
+                              },
+                              "order_id": {
+                                 "type": "string",
+                                 "example": "e7879708-8baa-4baf-b189-e91c9c91aa49"
+                              },
+                              "product_id": {
+                                 "type": "string",
+                                 "example": "c75513cd-f1ee-434c-aaa1-1109ed999e1b"
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/orders": {
+         "get": {
+            "tags": ["Rotas Order"],
+            "summary": "Listar todas as orders",
+            "description": "Retorna todas as orders registradas no sistema.",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Lista de orders recuperada com sucesso",
+                  "schema": {
+                     "type": "array",
+                     "items": {
+                        "type": "object",
+                        "properties": {
+                           "id": {
+                              "type": "string",
+                              "example": "d4d01584-8c75-4d51-97ba-3588ab150783"
+                           },
+                           "table": {
+                              "type": "integer",
+                              "example": 22
+                           },
+                           "status": {
+                              "type": "boolean",
+                              "example": false
+                           },
+                           "draft": {
+                              "type": "boolean",
+                              "example": false
+                           },
+                           "name": {
+                              "type": "string",
+                              "example": null
+                           },
+                           "created_at": {
+                              "type": "string",
+                              "example": "2024-05-07T02:06:26.655Z"
+                           },
+                           "updated_at": {
+                              "type": "string",
+                              "example": "2024-05-07T02:06:26.655Z"
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/order/detail": {
+         "get": {
+            "tags": ["Rotas Order"],
+            "summary": "Detalhes da order",
+            "description": "Retorna todos os detalhes da order especificada.",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "order_id",
+                  "in": "query",
+                  "description": "ID da order",
+                  "required": true,
+                  "type": "string",
+                  "format": "uuid"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Detalhes da order recuperados com sucesso",
+                  "schema": {
+                     "type": "array",
+                     "items": {
+                        "type": "object",
+                        "properties": {
+                           "id": {
+                              "type": "string",
+                              "example": "da026e82-f370-4e7b-b0af-b618cdc549de"
+                           },
+                           "amount": {
+                              "type": "integer",
+                              "example": 3
+                           },
+                           "created_at": {
+                              "type": "string",
+                              "example": "2024-05-02T21:11:09.456Z"
+                           },
+                           "updated_at": {
+                              "type": "string",
+                              "example": "2024-05-02T21:11:09.456Z"
+                           },
+                           "order_id": {
+                              "type": "string",
+                              "example": "fd70f891-fa2a-43a9-93d4-7267f40d7616"
+                           },
+                           "product_id": {
+                              "type": "string",
+                              "example": "f886872d-79a0-417d-9328-9e8337346584"
+                           },
+                           "product": {
+                              "type": "object",
+                              "properties": {
+                                 "id": {
+                                    "type": "string",
+                                    "example": "f886872d-79a0-417d-9328-9e8337346584"
+                                 },
+                                 "name": {
+                                    "type": "string",
+                                    "example": "Pizza de calabresa"
+                                 },
+                                 "price": {
+                                    "type": "string",
+                                    "example": "30,00"
+                                 },
+                                 "description": {
+                                    "type": "string",
+                                    "example": "Pizza saborosa com 8 fatias"
+                                 },
+                                 "banner": {
+                                    "type": "string",
+                                    "example": "{f0f01646a4a16a590f2f92e357ec10fe-pizza_calabresa_e_mussarela_4389_600.jpg"
+                                 },
+                                 "created_at": {
+                                    "type": "string",
+                                    "example": "2024-05-02T15:21:42.979Z"
+                                 },
+                                 "updated_at": {
+                                    "type": "string",
+                                    "example": "2024-05-02T15:21:42.979Z"
+                                 },
+                                 "category_id": {
+                                    "type": "string",
+                                    "example": "40c69ca6-699f-4b55-8101-4f3ee1cc84a4"
+                                 }
+                              }
+                           },
+                           "order": {
+                              "type": "object",
+                              "properties": {
+                                 "id": {
+                                    "type": "string",
+                                    "example": "fd70f891-fa2a-43a9-93d4-7267f40d7616"
+                                 },
+                                 "table": {
+                                    "type": "integer",
+                                    "example": 40
+                                 },
+                                 "status": {
+                                    "type": "boolean",
+                                    "example": false
+                                 },
+                                 "draft": {
+                                    "type": "boolean",
+                                    "example": false
+                                 },
+                                 "name": {
+                                    "type": "string",
+                                    "example": "Luna"
+                                 },
+                                 "created_at": {
+                                    "type": "string",
+                                    "example": "2024-05-02T21:06:38.718Z"
+                                 },
+                                 "updated_at": {
+                                    "type": "string",
+                                    "example": "2024-05-02T21:06:38.718Z"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/order/send": {
+         "put": {
+            "tags": ["Rotas Order"],
+            "summary": "Enviar pedido",
+            "description": "Altera o campo 'draft' para false, indicando que o pedido foi enviado.",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+               {
+                  "name": "order_id",
+                  "in": "body",
+                  "description": "ID do pedido a ser enviado",
+                  "required": true,
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "order_id": {
+                           "type": "string",
+                           "example": "fd70f891-fa2a-43a9-93d4-7267f40d7616"
+                        }
+                     }
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Pedido enviado com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "id": {
+                           "type": "string",
+                           "example": "fd70f891-fa2a-43a9-93d4-7267f40d7616"
+                        },
+                        "table": {
+                           "type": "integer",
+                           "example": 40
+                        },
+                        "status": {
+                           "type": "boolean",
+                           "example": false
+                        },
+                        "draft": {
+                           "type": "boolean",
+                           "example": false
+                        },
+                        "name": {
+                           "type": "string",
+                           "example": "Luna"
+                        },
+                        "created_at": {
+                           "type": "string",
+                           "example": "2024-05-02T21:06:38.718Z"
+                        },
+                        "updated_at": {
+                           "type": "string",
+                           "example": "2024-05-02T21:06:38.718Z"
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/order/finish": {
+         "put": {
+            "tags": ["Rotas Order"],
+            "summary": "Finalizar pedido",
+            "description": "Altera o campo 'status' para true, finalizando o pedido.",
+            "parameters": [
+               {
+                  "name": "Authorization",
+                  "in": "headers",
+                  "description": "Token de autenticação",
+                  "required": true,
+                  "type": "string",
+                  "format": "Bearer {token}"
+               },
+
+               {
+                  "name": "order_id",
+                  "in": "body",
+                  "description": "ID do pedido a ser finalizado",
+                  "required": true,
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "order_id": {
+                           "type": "string",
+                           "example": "fd70f891-fa2a-43a9-93d4-7267f40d7616"
+                        }
+                     }
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Pedido finalizado com sucesso",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Order finished successfully"
+                        },
+                        "order": {
+                           "type": "object",
+                           "properties": {
+                              "id": {
+                                 "type": "string",
+                                 "example": "fd70f891-fa2a-43a9-93d4-7267f40d7616"
+                              },
+                              "table": {
+                                 "type": "integer",
+                                 "example": 40
+                              },
+                              "status": {
+                                 "type": "boolean",
+                                 "example": true
+                              },
+                              "draft": {
+                                 "type": "boolean",
+                                 "example": false
+                              },
+                              "name": {
+                                 "type": "string",
+                                 "example": "Luna"
+                              },
+                              "created_at": {
+                                 "type": "string",
+                                 "example": "2024-05-02T21:06:38.718Z"
+                              },
+                              "updated_at": {
+                                 "type": "string",
+                                 "example": "2024-05-02T21:06:38.718Z"
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Token inválido",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "message": {
+                           "type": "string",
+                           "example": "Token invalid"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Erro interno do servidor",
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "error": {
+                           "type": "string",
+                           "example": "Internal server error"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

@@ -19,6 +19,7 @@ import { CreateProductController } from "./controllers/product/CreateProductCont
 import { ListByProductController } from "./controllers/product/ListByProductController";
 import { RemoveProductController } from "./controllers/product/RemoveProductController";
 import { EditProductController } from "./controllers/product/EditProductController";
+import { ListProductControler } from "./controllers/product/ListProductController";
 
 import { CreateOrderController } from "./controllers/order/CreateOrderController";
 import { RemoveOrderController } from "./controllers/order/RemoveOrderController";
@@ -28,7 +29,6 @@ import { SendOrderController } from "./controllers/order/SendOrderController";
 import { ListOrdersController } from "./controllers/order/ListOrdersController";
 import { DetailOrderController } from "./controllers/order/DetailOrderController";
 import { FinishOrderController } from "./controllers/order/FinishOrderController";
-import { ListProductControler } from "./controllers/product/ListProductController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
