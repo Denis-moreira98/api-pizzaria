@@ -13,7 +13,7 @@
    "paths": {
       "/users": {
          "post": {
-            "summary": "Cadastro de um novo usário",
+            "summary": "Cadastro de um novo usuário",
             "tags": ["Rotas User"],
             "description": "Cria um novo usuário",
             "parameters": [
