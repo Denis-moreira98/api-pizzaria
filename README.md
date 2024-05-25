@@ -63,7 +63,7 @@ Após a instalação, crie um banco de dados no pgAdmin e lembre-se do nome do b
 3. Instale as dependências:
    
     ```bash
-    yarn install
+    yarn add
     ```
 4. Configure as variáveis de ambiente. Consulte o arquivo `.env.example` para referência.
 
@@ -76,7 +76,7 @@ Após a instalação, crie um banco de dados no pgAdmin e lembre-se do nome do b
 5. Execute as migrações no banco de dados:
    
     ```bash
-    yarn prisma migrate dev
+    npx prisma migrate dev
     ```
 6. Inicie o servidor:
    
