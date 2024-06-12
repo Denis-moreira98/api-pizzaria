@@ -7,7 +7,7 @@
       "build": "tsc",
       "start": "nodemon dist/server.js",
       "dev": "ts-node-dev --ignore node_modules src/server.ts",
-      "prisma:migrate": "prisma migrate",
+      "prisma:migrate": "prisma migrate deploy",
       "lint": "eslint --fix src/**"
    },
    "devDependencies": {
